@@ -3,12 +3,11 @@ on:
   push:
     branches: [ 'dev' ]
 env:
-  NAMESPACE: odiliamad
-  REPOSITORY: codebstash
+  NAMESPACE: sgtmadjou
+  REPOSITORY: code_bush
   TAG: latest
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
-  GH_TOKEN: ${{ secrets.MY_PERSONAL_TOKEN }}
-  
+ 
 permissions:
   contents: read
   issues: write  
@@ -33,7 +32,7 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: ${{ env.NAMESPACE }}/${{ env.REPOSITORY }}
-          tags:  ${{ secrets.DOCKERHUB_USERNAME }}/codebstash:1.0
+          tags:  ${{ env.TAG }}
           
       - name: Build and push Docker images
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
