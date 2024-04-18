@@ -1,0 +1,20 @@
+name: node20
+on:
+  push:
+    branches: dev
+env:
+  NAMESPACE: odiliamad
+  REPOSITORY: codebstach
+  TAG: latest
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
+  
+jobs:
+  buil_push:
+    runs-on: ubuntu-latest
+    env: ${{ github.head_ref || github.ref_name }} 
+    
+    steps:
+      - name: Check out repo's default branch
+        uses: actions/checkout@v4 
+
+  
