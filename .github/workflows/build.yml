@@ -7,7 +7,7 @@ env:
   REPOSITORY: codebstash
   TAG: latest
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_TOKEN: ${{ secrets.MY_PERSONAL_TOKEN }}
   
 permissions:
   contents: read
