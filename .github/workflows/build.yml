@@ -1,10 +1,10 @@
-name: node20
+name: Docker
 on:
   push:
     branches: [ 'dev' ]
 env:
   NAMESPACE: odiliamad
-  REPOSITORY: codebstach
+  REPOSITORY: ${{ github.repository}}
   TAG: latest
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
   
@@ -15,7 +15,7 @@ permissions:
 jobs:
   buil_push:
     runs-on: ubuntu-latest
-    env: ${{ github.head_ref || github.ref_name }} 
+    environment: ${{ github.head_ref || github.ref_name }} 
     
     steps:
       - name: Check out repo's default branch
@@ -26,4 +26,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }} 
-  
+          
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ env.NAMESPACE }}/${{ env.REPOSITORY }}
