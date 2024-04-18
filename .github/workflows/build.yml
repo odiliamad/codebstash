@@ -4,7 +4,7 @@ on:
     branches: [ 'dev' ]
 env:
   NAMESPACE: odiliamad
-  REPOSITORY: ${{ github.repository}}
+  REPOSITORY: codebstash
   TAG: latest
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
   
@@ -37,8 +37,8 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
-          context: ./k8s-web-hello
-          file: Dockerfile
+          context: .
+          file: k8s-web-hello/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }} 
